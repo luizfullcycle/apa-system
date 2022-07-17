@@ -1,0 +1,10 @@
+{
+  "realm": "apa-system",
+  "auth-server-url": "http://localhost:8080/auth/",
+  "ssl-required": "external",
+  "resource": "apa-system-back",
+  "credentials": {
+    "secret": "nb1je9ZwBGgURL46Nm0y0SuLeZ0oPpbq"
+  },
+  "confidential-port": 0
+}
