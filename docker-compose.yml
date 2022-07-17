@@ -1,0 +1,39 @@
+version: "3"
+networks:
+  redes:
+    driver: bridge
+services:
+  bd:
+    image: postgres
+    container_name: bd
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_DB: apaSystemDB
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - redes
+    volumes:
+      - ./vol_postgres:/var/lib/postgresql/data
+
+  keycloack:
+    image: jboss/keycloak
+    container_name: keycloack
+    ports:
+      - "8080:8080"
+    networks:
+      - redes
+    environment:
+      - DB_USER=postgres
+      - DB_ADDR=bd
+      - KEYCLOAK_PASSWORD=admin
+      - KEYCLOAK_USER=admin
+      - DB_VENDOR=postgres
+      - DB_PORT=5432
+      - DB_DATABASE=apaSystemDB
+      - DB_SCHEMA=public
+      - DB_PASSWORD=postgres
+    depends_on:
+      - bd
+

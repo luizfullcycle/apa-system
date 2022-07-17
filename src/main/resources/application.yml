@@ -1,0 +1,37 @@
+server:
+  port: 8083
+  servlet:
+    context-path: /apa-system
+spring:
+  application:
+    name: apa-system
+  datasource:
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://bd/apaSystemDB
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            jwkSetUri: http://localhost:8080/auth/realms/apa-system/protocol/openid-connect/certs
+            issuerUri: http://localhost:8080/auth/realms/apa-system
+            authorizationUri: http://localhost:8080/auth/realms/apa-system/protocol/openid-connect/auth
+            tokenUri: http://localhost:8080/auth/realms/apa-system/protocol/openid-connect/token
+            userInfoUri: http://localhost:8080/auth/realms/apa-system/protocol/openid-connect/userinfo
+            userNameAttribute: prefered_username
+keycloak:
+  auth-server-url: http://localhost:8080/auth
+  realm: apa-system
+  resource: apa-system-back
+  credentials:
+    secret: nb1je9ZwBGgURL46Nm0y0SuLeZ0oPpbq
+  principal-attribute: preferred_username
+
+
+
